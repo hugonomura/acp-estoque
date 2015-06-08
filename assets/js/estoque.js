@@ -8,7 +8,7 @@ $(function(){
 
     $("#novoProduto").submit(function(event){
         var produto = JSON.stringify({
-            Id: tbProdutos.length.toString(),
+            Id: '000' + tbProdutos.length.toString(),
             Produto: $("#produto").val(),
             Quantidade: $("#quantidade").val().toString(),
             Preco: $("#preco").val().toString(),
@@ -19,6 +19,7 @@ $(function(){
         event.preventDefault();
         $('#myModal').modal('hide');
         listarProdutos();
+        location.reload();
         return true;
     });
 
@@ -47,14 +48,24 @@ $(function(){
         indice_selecionado = parseInt($(this).attr("alt"));
         excluirProduto();
         listarProdutos();
+        location.reload();
     });
 
     function excluirProduto(){
-        console.log("oi");
-        console.log(indice_selecionado.toString());
         console.log(tbProdutos);
         tbProdutos.splice(indice_selecionado, 1);
-        console.log(tbProdutos);
         localStorage.setItem("tbProdutos", JSON.stringify(tbProdutos));
     }
+
+    function editarProduto(){
+        tbProdutos[indice_selecionado] = JSON.stringify({
+            Id: tbProdutos[indice_selecionado].Id,
+            Produto: $("#produto").val(),
+            Quantidade: $("#quantidade").val().toString(),
+            Preco: $("#preco").val().toString(),
+            Tipo: $("#tipo").val()
+        });        
+        return true;
+    }
+
 });
