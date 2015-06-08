@@ -70,7 +70,15 @@ $(function(){
 
     $(".btn-editar").click(function(){
         operacao = "E";
-        indice_selecionado = parseInt($(this).attr("alt"), 10);
+        var index = $(this).attr("alt");
+
+        for(var i in tbProdutos){
+            var prod = JSON.parse(tbProdutos[i]);
+            if(prod.Id == index){
+                indice_selecionado = i;
+            }
+        }
+
         var prod = JSON.parse(tbProdutos[indice_selecionado]);
         $("#produto").val(prod.Produto);
         $("#quantidade").val(parseInt(prod.Quantidade, 10));
