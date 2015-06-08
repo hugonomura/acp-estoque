@@ -22,7 +22,6 @@ $(function() {
 
         for (var i = 0; i < fileArr.length; i++) {
             var prodEntry = fileArr[i].split(',');
-            console.log(prodEntry);
 
             if(prodEntry.length != 4)
                 continue;
@@ -37,7 +36,6 @@ $(function() {
             tbProdutos.push(prod)
         }
         localStorage.setItem("tbProdutos", JSON.stringify(tbProdutos));
-        console.log(JSON.stringify(tbProdutos));
 
         $("#file-upload").submit();
     }

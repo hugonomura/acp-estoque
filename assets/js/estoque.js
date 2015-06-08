@@ -35,15 +35,20 @@ $(function(){
     listarProdutos();
 
     $(".btn-excluir").click(function(){
-        indice_selecionado = parseInt($(this).attr("alt"));
+        indice_selecionado = $(this).attr("alt");
         excluirProduto();
         listarProdutos();
         location.reload();
     });
 
     function excluirProduto(){
-        tbProdutos.splice(indice_selecionado, 1);
-        localStorage.setItem("tbProdutos", JSON.stringify(tbProdutos));
+        for(var i in tbProdutos){
+            var prod = JSON.parse(tbProdutos[i]);
+            if(prod.Id == indice_selecionado){
+                tbProdutos.splice(i, 1);
+                localStorage.setItem("tbProdutos", JSON.stringify(tbProdutos));
+            }
+        }
     }
 
     function novoProduto() {
