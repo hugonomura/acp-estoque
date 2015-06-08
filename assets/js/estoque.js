@@ -83,7 +83,7 @@ $(function(){
         $("#produto").val(prod.Produto);
         $("#quantidade").val(parseInt(prod.Quantidade, 10));
         $("#preco").val(parseFloat(prod.Preco, 10));
-        $("#tipo").val(prod.Tipo);
+        $("#tipo").val(prod.Tipo.trim());
         $("#produto").focus();
         $("#cadastrarProduto").html("Atualizar");
     });
