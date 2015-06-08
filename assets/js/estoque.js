@@ -4,23 +4,13 @@ $(function(){
     var tbProdutos = localStorage.getItem("tbProdutos");// Recupera os dados armazenados
     tbProdutos = JSON.parse(tbProdutos); // Converte string para objeto 
     if(tbProdutos == null) // Caso não haja conteúdo, iniciamos um vetor vazio
-    tbProdutos = [];
+      tbProdutos = [];
 
     $("#novoProduto").submit(function(event){
-        var produto = JSON.stringify({
-            Id: '000' + tbProdutos.length.toString(),
-            Produto: $("#produto").val(),
-            Quantidade: $("#quantidade").val().toString(),
-            Preco: $("#preco").val().toString(),
-            Tipo: $("#tipo").val()
-        });
-        tbProdutos.push(produto);
-        localStorage.setItem("tbProdutos", JSON.stringify(tbProdutos));
-        event.preventDefault();
-        $('#myModal').modal('hide');
-        listarProdutos();
-        location.reload();
-        return true;
+        if(operacao == "A")
+            return novoProduto();
+        else
+            return editarProduto();
     });
 
     function listarProdutos(){
@@ -34,7 +24,7 @@ $(function(){
             listaProdutos = listaProdutos.concat('<td class="product-entry">' + prod.Quantidade + '</td>');
             listaProdutos = listaProdutos.concat('<td class="product-entry">' + prod.Preco + '</td>');
             listaProdutos = listaProdutos.concat('<td class="product-entry">' + prod.Tipo + '</td>');
-            listaProdutos = listaProdutos.concat('<td class="product-entry"><a href="#" class="btn btn-info"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a><a href="#" class="btn btn-danger btn-excluir" alt="' + prod.Id + '"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>');
+            listaProdutos = listaProdutos.concat('<td class="product-entry"><a href="#" class="btn btn-info btn-editar" data-toggle="modal" data-target="#myModal" alt="' + prod.Id + '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a><a href="#" class="btn btn-danger btn-excluir" alt="' + prod.Id + '"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>');
             listaProdutos = listaProdutos.concat("</tr>");
         }
         $("#listaProdutos").fadeIn( "slow", function() {
@@ -52,10 +42,38 @@ $(function(){
     });
 
     function excluirProduto(){
-        console.log(tbProdutos);
         tbProdutos.splice(indice_selecionado, 1);
         localStorage.setItem("tbProdutos", JSON.stringify(tbProdutos));
     }
+
+    function novoProduto() {
+        var produto = JSON.stringify({
+            Id: tbProdutos.length.toString(),
+            Produto: $("#produto").val(),
+            Quantidade: $("#quantidade").val().toString(),
+            Preco: $("#preco").val().toString(),
+            Tipo: $("#tipo").val()
+        });
+        tbProdutos.push(produto);
+        localStorage.setItem("tbProdutos", JSON.stringify(tbProdutos));
+        event.preventDefault();
+        $('#myModal').modal('hide');
+        listarProdutos();
+        location.reload();
+        return true;        
+    }
+
+    $(".btn-editar").click(function(){
+        operacao = "E";
+        indice_selecionado = parseInt($(this).attr("alt"), 10);
+        var prod = JSON.parse(tbProdutos[indice_selecionado]);
+        $("#produto").val(prod.Produto);
+        $("#quantidade").val(parseInt(prod.Quantidade, 10));
+        $("#preco").val(parseFloat(prod.Preco, 10));
+        $("#tipo").val(prod.Tipo);
+        $("#produto").focus();
+        $("#cadastrarProduto").html("Atualizar");
+    });
 
     function editarProduto(){
         tbProdutos[indice_selecionado] = JSON.stringify({
@@ -64,8 +82,22 @@ $(function(){
             Quantidade: $("#quantidade").val().toString(),
             Preco: $("#preco").val().toString(),
             Tipo: $("#tipo").val()
-        });        
+        });
+        localStorage.setItem("tbProdutos", JSON.stringify(tbProdutos));
+        operacao = "A";
         return true;
+    }
+
+    $("#inserirNovoProduto").click(function(){
+        resetForm();
+    });
+
+    function resetForm() {
+        $("#produto").val("");
+        $("#quantidade").val("");
+        $("#preco").val("");
+        $("#tipo").val("A");
+        $("#cadastrarProduto").html("Cadastrar");
     }
 
 });
