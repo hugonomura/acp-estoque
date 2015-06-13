@@ -42,23 +42,47 @@
             </p>
             <div class="tree">
                 <ul>
-                    <li><a href="#">Bicicleta (1) </a>
+                    <li><a href="#" id="bicicleta" data-toggle="modal" data-target="#myModal">Bicicleta <span id="qtd-bicicleta">(1)</span></a>
                         <ul>
-                            <li><a href="#">Guidão (1)</a></li>
-                            <li><a href="#">Montagem do Quadro (1)</a>
+                            <li><a href="#">Guidão <span id="qtd-guidao">(1)</span></a></li>
+                            <li><a href="#">Montagem do Quadro <span id="qtd-montagem-quadro">(1)</span></a>
                                 <ul>
-                                    <li><a href="#">Rodas (2)</a></li>
-                                    <li><a href="#">Quadro (1)</a></li>
+                                    <li><a href="#">Rodas <span id="qtd-roda">(2)</span></a></li>
+                                    <li><a href="#">Quadro <span id="qtd-quadro">(1)</span></a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
                 </ul>
             </div>
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Quantas bicicletas você deseja produzir?</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="num-bicicletas">Quantia de bicicletas</label>
+                                <input type="number" class="form-control" id="num-bicicletas" placeholder="Quantidade de bicicletas" min="1" step="1">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" data-dismiss="modal" id="atualizarMrp">Atualizar</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </section>
 </body>
 <script type="text/javascript" src="assets/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/main.js"></script>
 <script type="text/javascript" src="assets/js/mrp.js"></script>
 </html>
