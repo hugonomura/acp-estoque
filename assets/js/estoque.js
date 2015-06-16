@@ -116,5 +116,4 @@ $(function(){
         $("#demandaAnual").val("");
         $("#cadastrarProduto").html("Cadastrar");
     }
-
 });

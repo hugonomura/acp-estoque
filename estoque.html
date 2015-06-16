@@ -81,8 +81,31 @@
         </table>
         <div class="container">
             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="inserirNovoProduto"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-            <a href="#" class="btn btn-success">Simular</a>
+            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#mySimulate" id="btn-simular">Simular</a>
         </div>
+
+        <!-- Modal -->
+        <div id="mySimulate" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Custo anual dos estoques</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-info" id="div-lote-economico"><b>Lote economico</b> <span id="lote-economico"></span></div>
+                        <div class="alert alert-info" id="div-ponto-pedido"><b>Ponto de pedido</b> <span id="ponto-pedido"></span></div>
+                        <div class="alert alert-info" id="div-revisao-periodica"><b>Revisão periódica</b> <span id="revisao-periodica"></span></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -133,4 +156,5 @@
 <script type="text/javascript" src="assets/js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/estoque.js"></script>
+<script type="text/javascript" src="assets/js/custo-estoque.js"></script>
 </html>
