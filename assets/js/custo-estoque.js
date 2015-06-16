@@ -1,17 +1,26 @@
 $(function(){
+    var tbProdutos = localStorage.getItem("tbProdutos");// Recupera os dados armazenados
+    tbProdutos = JSON.parse(tbProdutos); // Converte string para objeto 
+
     function calculaCustoAnualLoteEconomico() {
         var custoAnual = 0;
-        return custoAnual;
+        for(var i in tbProdutos) {
+            var prod = JSON.parse(tbProdutos[i]);
+            var h = parseFloat(prod.Preco) / parseInt(prod.DemandaAnual);
+            var lep = Math.sqrt(parseInt(prod.DemandaAnual) * parseFloat(prod.Preco) * 2 / h);
+            custoAnual += (lep / 2 * h) + (parseInt(prod.DemandaAnual) / lep * parseFloat(prod.Preco));
+        }
+        return Number(custoAnual.toFixed(2));
     }
 
     function calculaCustoAnualPontoPedido() {
         var custoAnual = 0;
-        return custoAnual;
+        return Number(custoAnual.toFixed(2));
     }
 
     function calculaCustoAnualRevisaoPeriodica() {
         var custoAnual = 0;
-        return custoAnual;
+        return Number(custoAnual.toFixed(2));
     }
 
     function initClass(){
