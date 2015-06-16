@@ -23,15 +23,16 @@ $(function() {
         for (var i = 0; i < fileArr.length; i++) {
             var prodEntry = fileArr[i].split(',');
 
-            if(prodEntry.length != 4)
+            if(prodEntry.length != 5)
                 continue;
 
             var prod = JSON.stringify({
-                Id: tbProdutos.length.toString(),
+                Id: tbProdutos.length.toString().trim(),
                 Produto: prodEntry[0],
-                Quantidade: prodEntry[1].toString(),
-                Preco: prodEntry[2].toString(),
-                Tipo: prodEntry[3]
+                TamLote: prodEntry[1].toString().trim(),
+                Preco: prodEntry[2].toString().trim(),
+                DemandaAnual: prodEntry[3].toString().trim(),
+                Tipo: prodEntry[4].toString().trim()
             });
             tbProdutos.push(prod)
         }

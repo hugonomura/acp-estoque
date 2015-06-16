@@ -21,8 +21,9 @@ $(function(){
             listaProdutos = listaProdutos.concat("<tr>");
             listaProdutos = listaProdutos.concat('<td class="product-entry" id="id-produto">' + prod.Id + '</td>');
             listaProdutos = listaProdutos.concat('<td class="product-entry">' + prod.Produto + '</td>');
-            listaProdutos = listaProdutos.concat('<td class="product-entry">' + prod.Quantidade + '</td>');
+            listaProdutos = listaProdutos.concat('<td class="product-entry">' + prod.TamLote + '</td>');
             listaProdutos = listaProdutos.concat('<td class="product-entry">' + prod.Preco + '</td>');
+            listaProdutos = listaProdutos.concat('<td class="product-entry">' + prod.DemandaAnual + '</td>');
             listaProdutos = listaProdutos.concat('<td class="product-entry">' + prod.Tipo + '</td>');
             listaProdutos = listaProdutos.concat('<td class="product-entry"><a href="#" class="btn btn-info btn-editar" data-toggle="modal" data-target="#myModal" alt="' + prod.Id + '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a><a href="#" class="btn btn-danger btn-excluir" alt="' + prod.Id + '"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>');
             listaProdutos = listaProdutos.concat("</tr>");
@@ -55,8 +56,9 @@ $(function(){
         var produto = JSON.stringify({
             Id: tbProdutos.length.toString(),
             Produto: $("#produto").val(),
-            Quantidade: $("#quantidade").val().toString(),
+            TamLote: $("#tamLote").val().toString(),
             Preco: $("#preco").val().toString(),
+            DemandaAnual: $("#demandaAnual").val().toString(),
             Tipo: $("#tipo").val()
         });
         tbProdutos.push(produto);
@@ -81,8 +83,9 @@ $(function(){
 
         var prod = JSON.parse(tbProdutos[indice_selecionado]);
         $("#produto").val(prod.Produto);
-        $("#quantidade").val(parseInt(prod.Quantidade, 10));
+        $("#tamLote").val(parseInt(prod.TamLote, 10));
         $("#preco").val(parseFloat(prod.Preco, 10));
+        $("#demandaAnual").val(parseInt(prod.TamLote, 10));
         $("#tipo").val(prod.Tipo.trim());
         $("#cadastrarProduto").html("Atualizar");
     });
@@ -91,8 +94,9 @@ $(function(){
         tbProdutos[indice_selecionado] = JSON.stringify({
             Id: tbProdutos[indice_selecionado].Id,
             Produto: $("#produto").val(),
-            Quantidade: $("#quantidade").val().toString(),
+            TamLote: $("#tamLote").val().toString(),
             Preco: $("#preco").val().toString(),
+            DemandaAnual: $("#demandaAnual").val().toString(),
             Tipo: $("#tipo").val()
         });
         localStorage.setItem("tbProdutos", JSON.stringify(tbProdutos));
@@ -106,9 +110,10 @@ $(function(){
 
     function resetForm() {
         $("#produto").val("");
-        $("#quantidade").val("");
+        $("#tamLote").val("");
         $("#preco").val("");
         $("#tipo").val("A");
+        $("#demandaAnual").val("");
         $("#cadastrarProduto").html("Cadastrar");
     }
 
