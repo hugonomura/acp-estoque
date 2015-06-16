@@ -15,11 +15,20 @@ $(function(){
 
     function calculaCustoAnualPontoPedido() {
         var custoAnual = 0;
+        
+        for(var i in tbProdutos) {
+            var prod = JSON.parse(tbProdutos[i]);
+            var h = parseFloat(prod.Preco) / parseInt(prod.DemandaAnual);
+            var lep = Math.sqrt(parseInt(prod.DemandaAnual) * parseFloat(prod.Preco) * 2 / h);
+            var pp = lep / 2;
+            custoAnual += (pp / 2 * h) + (parseInt(prod.DemandaAnual) / pp * parseFloat(prod.Preco));
+        }
         return Number(custoAnual.toFixed(2));
     }
 
     function calculaCustoAnualRevisaoPeriodica() {
         var custoAnual = 0;
+
         return Number(custoAnual.toFixed(2));
     }
 
